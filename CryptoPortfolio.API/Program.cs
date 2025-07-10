@@ -27,6 +27,9 @@ builder.Services.AddHttpClient<ICoinMarketCapService, CoinMarketCapService>();
 builder.Services.AddScoped<IPortfolioService, PortfolioService>();
 builder.Services.AddScoped<IAssetService, AssetService>();
 
+// Currency conversion service with HttpClient
+builder.Services.AddHttpClient<ICurrencyConversionService, CurrencyConversionService>();
+
 // CORS - Enhanced configuration for multiple environments
 builder.Services.AddCors(options =>
 {

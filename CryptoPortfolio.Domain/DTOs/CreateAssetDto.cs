@@ -43,5 +43,7 @@ namespace CryptoPortfolio.Domain.DTOs
         
         [StringLength(1000, ErrorMessage = "Notes must be 1000 characters or less")]
         public string? Notes { get; set; }
+        
+        public bool IsCrypto { get; set; } = false;
     }
 }

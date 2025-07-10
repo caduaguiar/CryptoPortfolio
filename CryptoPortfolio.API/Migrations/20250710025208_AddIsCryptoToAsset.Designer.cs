@@ -3,6 +3,7 @@ using System;
 using CryptoPortfolio.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CryptoPortfolio.API.Migrations
 {
     [DbContext(typeof(CryptoDbContext))]
-    partial class CryptoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250710025208_AddIsCryptoToAsset")]
+    partial class AddIsCryptoToAsset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +37,6 @@ namespace CryptoPortfolio.API.Migrations
                         .HasPrecision(18, 8)
                         .HasColumnType("numeric(18,8)");
 
-                    b.Property<decimal?>("AcquisitionCostUSD")
-                        .HasColumnType("numeric");
-
                     b.Property<DateTime>("AcquisitionDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -55,18 +55,9 @@ namespace CryptoPortfolio.API.Migrations
                         .HasPrecision(18, 8)
                         .HasColumnType("numeric(18,8)");
 
-                    b.Property<decimal?>("CurrentValueUSD")
-                        .HasColumnType("numeric");
-
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
-
-                    b.Property<DateTime?>("ExchangeRateLastUpdated")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal?>("ExchangeRateToUSD")
-                        .HasColumnType("numeric");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
@@ -351,9 +342,9 @@ namespace CryptoPortfolio.API.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 7, 10, 3, 56, 38, 847, DateTimeKind.Utc).AddTicks(9030),
+                            CreatedAt = new DateTime(2025, 7, 10, 2, 52, 8, 118, DateTimeKind.Utc).AddTicks(1820),
                             Email = "default@cryptoportfolio.com",
-                            LastUpdated = new DateTime(2025, 7, 10, 3, 56, 38, 847, DateTimeKind.Utc).AddTicks(9030),
+                            LastUpdated = new DateTime(2025, 7, 10, 2, 52, 8, 118, DateTimeKind.Utc).AddTicks(1820),
                             PasswordHash = "default_hash_placeholder",
                             Username = "defaultuser"
                         });

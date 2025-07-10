@@ -53,7 +53,8 @@ namespace CryptoPortfolio.Services
                 Notes = a.Notes,
                 LastUpdated = a.LastUpdated,
                 CreatedAt = a.CreatedAt,
-                IsActive = a.IsActive
+                IsActive = a.IsActive,
+                IsCrypto = a.IsCrypto
             }).ToList();
 
             var totalPortfolioValue = assetDtos.Where(a => a.CurrentValue.HasValue).Sum(a => a.CurrentValue!.Value);
@@ -144,7 +145,7 @@ namespace CryptoPortfolio.Services
                 PricePerUnit = dto.PricePerUnit,
                 TotalTransactionValue = dto.TotalTransactionValue,
                 TransactionCurrency = dto.TransactionCurrency,
-                TransactionDate = dto.TransactionDate,
+                TransactionDate = DateTime.SpecifyKind(dto.TransactionDate, DateTimeKind.Utc),
                 Notes = dto.Notes,
                 CreatedAt = DateTime.UtcNow
             };

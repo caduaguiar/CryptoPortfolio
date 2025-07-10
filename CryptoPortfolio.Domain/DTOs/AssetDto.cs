@@ -21,6 +21,13 @@ namespace CryptoPortfolio.Domain.DTOs
         public DateTime LastUpdated { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool IsActive { get; set; }
+        public bool IsCrypto { get; set; }
+        
+        // Currency conversion fields
+        public decimal? AcquisitionCostUSD { get; set; }
+        public decimal? CurrentValueUSD { get; set; }
+        public decimal? ExchangeRateToUSD { get; set; }
+        public DateTime? ExchangeRateLastUpdated { get; set; }
         
         // Calculated properties
         public decimal? ProfitLoss => CurrentValue.HasValue ? CurrentValue.Value - AcquisitionCost : null;

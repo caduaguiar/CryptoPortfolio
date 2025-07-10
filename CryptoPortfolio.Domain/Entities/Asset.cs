@@ -37,6 +37,12 @@ namespace CryptoPortfolio.Domain.Entities
         [MaxLength(10)]
         public string Currency { get; set; } = "USD";
         
+        // USD equivalent values for multi-currency support
+        public decimal? AcquisitionCostUSD { get; set; }
+        public decimal? CurrentValueUSD { get; set; }
+        public decimal? ExchangeRateToUSD { get; set; }
+        public DateTime? ExchangeRateLastUpdated { get; set; }
+        
         [MaxLength(255)]
         public string? Location { get; set; }
         
@@ -48,6 +54,8 @@ namespace CryptoPortfolio.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         
         public bool IsActive { get; set; } = true;
+        
+        public bool IsCrypto { get; set; } = false;
         
         // Navigation properties
         public virtual Portfolio Portfolio { get; set; } = null!;

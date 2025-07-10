@@ -13,10 +13,12 @@ namespace CryptoPortfolio.Services
     public class AssetService : IAssetService
     {
         private readonly CryptoDbContext _context;
+        private readonly ICurrencyConversionService _currencyConversionService;
 
-        public AssetService(CryptoDbContext context)
+        public AssetService(CryptoDbContext context, ICurrencyConversionService currencyConversionService)
         {
             _context = context;
+            _currencyConversionService = currencyConversionService;
         }
 
         public async Task<List<AssetDto>> GetAssetsByPortfolioIdAsync(int portfolioId)
@@ -50,16 +52,48 @@ namespace CryptoPortfolio.Services
                 Symbol = dto.Symbol,
                 Description = dto.Description,
                 Quantity = dto.Quantity,
-                AcquisitionDate = dto.AcquisitionDate,
+                AcquisitionDate = DateTime.SpecifyKind(dto.AcquisitionDate, DateTimeKind.Utc),
                 AcquisitionCost = dto.AcquisitionCost,
                 CurrentValue = dto.CurrentValue,
                 Currency = dto.Currency,
                 Location = dto.Location,
                 Notes = dto.Notes,
+                IsCrypto = dto.IsCrypto,
                 CreatedAt = DateTime.UtcNow,
                 LastUpdated = DateTime.UtcNow,
                 IsActive = true
             };
+
+            // Handle currency conversion for non-USD currencies
+            if (dto.Currency.ToUpper() != "USD")
+            {
+                try
+                {
+                    var exchangeRate = await _currencyConversionService.GetExchangeRateToUSDAsync(dto.Currency);
+                    asset.ExchangeRateToUSD = exchangeRate;
+                    asset.ExchangeRateLastUpdated = DateTime.UtcNow;
+                    asset.AcquisitionCostUSD = dto.AcquisitionCost * exchangeRate;
+                    
+                    if (dto.CurrentValue.HasValue)
+                    {
+                        asset.CurrentValueUSD = dto.CurrentValue.Value * exchangeRate;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log the error but don't fail the asset creation
+                    // The USD values will be null and can be updated later
+                    Console.WriteLine($"Warning: Failed to get exchange rate for {dto.Currency}: {ex.Message}");
+                }
+            }
+            else
+            {
+                // For USD assets, set USD values to the same as original values
+                asset.AcquisitionCostUSD = dto.AcquisitionCost;
+                asset.CurrentValueUSD = dto.CurrentValue;
+                asset.ExchangeRateToUSD = 1.0m;
+                asset.ExchangeRateLastUpdated = DateTime.UtcNow;
+            }
 
             _context.Assets.Add(asset);
             await _context.SaveChangesAsync();
@@ -79,13 +113,51 @@ namespace CryptoPortfolio.Services
             asset.Symbol = dto.Symbol;
             asset.Description = dto.Description;
             asset.Quantity = dto.Quantity;
-            asset.AcquisitionDate = dto.AcquisitionDate;
+            asset.AcquisitionDate = DateTime.SpecifyKind(dto.AcquisitionDate, DateTimeKind.Utc);
             asset.AcquisitionCost = dto.AcquisitionCost;
             asset.CurrentValue = dto.CurrentValue;
             asset.Currency = dto.Currency;
             asset.Location = dto.Location;
             asset.Notes = dto.Notes;
+            asset.IsCrypto = dto.IsCrypto;
             asset.LastUpdated = DateTime.UtcNow;
+
+            // Update currency conversion if currency changed or exchange rate is stale
+            if (dto.Currency.ToUpper() != "USD")
+            {
+                if (_currencyConversionService.IsExchangeRateStale(asset.ExchangeRateLastUpdated) || 
+                    asset.ExchangeRateToUSD == null)
+                {
+                    try
+                    {
+                        var exchangeRate = await _currencyConversionService.GetExchangeRateToUSDAsync(dto.Currency);
+                        asset.ExchangeRateToUSD = exchangeRate;
+                        asset.ExchangeRateLastUpdated = DateTime.UtcNow;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Warning: Failed to update exchange rate for {dto.Currency}: {ex.Message}");
+                    }
+                }
+
+                // Update USD values using current exchange rate
+                if (asset.ExchangeRateToUSD.HasValue)
+                {
+                    asset.AcquisitionCostUSD = dto.AcquisitionCost * asset.ExchangeRateToUSD.Value;
+                    if (dto.CurrentValue.HasValue)
+                    {
+                        asset.CurrentValueUSD = dto.CurrentValue.Value * asset.ExchangeRateToUSD.Value;
+                    }
+                }
+            }
+            else
+            {
+                // For USD assets, set USD values to the same as original values
+                asset.AcquisitionCostUSD = dto.AcquisitionCost;
+                asset.CurrentValueUSD = dto.CurrentValue;
+                asset.ExchangeRateToUSD = 1.0m;
+                asset.ExchangeRateLastUpdated = DateTime.UtcNow;
+            }
 
             await _context.SaveChangesAsync();
 
@@ -189,7 +261,12 @@ namespace CryptoPortfolio.Services
                 Notes = asset.Notes,
                 LastUpdated = asset.LastUpdated,
                 CreatedAt = asset.CreatedAt,
-                IsActive = asset.IsActive
+                IsActive = asset.IsActive,
+                IsCrypto = asset.IsCrypto,
+                AcquisitionCostUSD = asset.AcquisitionCostUSD,
+                CurrentValueUSD = asset.CurrentValueUSD,
+                ExchangeRateToUSD = asset.ExchangeRateToUSD,
+                ExchangeRateLastUpdated = asset.ExchangeRateLastUpdated
             };
         }
     }
