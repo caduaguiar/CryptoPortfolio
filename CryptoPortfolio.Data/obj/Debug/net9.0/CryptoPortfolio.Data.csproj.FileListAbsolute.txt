@@ -1,0 +1,15 @@
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/bin/Debug/net9.0/CryptoPortfolio.Data.deps.json
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/bin/Debug/net9.0/CryptoPortfolio.Data.dll
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/bin/Debug/net9.0/CryptoPortfolio.Data.pdb
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/bin/Debug/net9.0/CryptoPortfolio.Domain.dll
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/bin/Debug/net9.0/CryptoPortfolio.Domain.pdb
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/CryptoPortfolio.Data.csproj.AssemblyReference.cache
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/CryptoPortfolio.Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/CryptoPortfolio.Data.AssemblyInfoInputs.cache
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/CryptoPortfolio.Data.AssemblyInfo.cs
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/CryptoPortfolio.Data.csproj.CoreCompileInputs.cache
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/CryptoPo.C90929F0.Up2Date
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/CryptoPortfolio.Data.dll
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/refint/CryptoPortfolio.Data.dll
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/CryptoPortfolio.Data.pdb
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Data/obj/Debug/net9.0/ref/CryptoPortfolio.Data.dll

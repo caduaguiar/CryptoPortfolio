@@ -1,0 +1,185 @@
+### Asset Management API Examples
+
+# First, you'll need to create a user (for now, you can insert directly into the database)
+# INSERT INTO users (username, email, password_hash, created_at, last_updated) 
+# VALUES ('testuser', 'test@example.com', 'hashedpassword', NOW(), NOW());
+
+# Then create a portfolio
+# INSERT INTO portfolios (user_id, name, description, base_currency, created_at, last_updated, is_active)
+# VALUES (1, 'My Main Portfolio', 'Primary investment portfolio', 'USD', NOW(), NOW(), true);
+
+### 1. Get Dashboard (shows all assets and portfolio summary)
+GET {{host}}/api/portfolio/dashboard
+Accept: application/json
+
+### 2. Create a new cryptocurrency asset
+POST {{host}}/api/assets
+Content-Type: application/json
+
+{
+  "portfolioId": 1,
+  "assetTypeId": 1,
+  "name": "Bitcoin",
+  "symbol": "BTC",
+  "description": "Digital currency",
+  "quantity": 0.5,
+  "acquisitionDate": "2024-01-15T00:00:00Z",
+  "acquisitionCost": 25000.00,
+  "currentValue": 30000.00,
+  "currency": "USD",
+  "notes": "Initial Bitcoin purchase"
+}
+
+### 3. Create a stock asset
+POST {{host}}/api/assets
+Content-Type: application/json
+
+{
+  "portfolioId": 1,
+  "assetTypeId": 2,
+  "name": "Apple Inc.",
+  "symbol": "AAPL",
+  "description": "Technology company stock",
+  "quantity": 10,
+  "acquisitionDate": "2024-02-01T00:00:00Z",
+  "acquisitionCost": 1800.00,
+  "currentValue": 1900.00,
+  "currency": "USD",
+  "notes": "Tech stock investment"
+}
+
+### 4. Create a real estate asset
+POST {{host}}/api/assets
+Content-Type: application/json
+
+{
+  "portfolioId": 1,
+  "assetTypeId": 3,
+  "name": "Downtown Apartment",
+  "description": "2-bedroom apartment in downtown area",
+  "quantity": 1,
+  "acquisitionDate": "2023-06-15T00:00:00Z",
+  "acquisitionCost": 250000.00,
+  "currentValue": 275000.00,
+  "currency": "USD",
+  "location": "123 Main St, Downtown",
+  "notes": "Investment property"
+}
+
+### 5. Get assets by portfolio
+GET {{host}}/api/assets/portfolio/1
+Accept: application/json
+
+### 6. Get specific asset
+GET {{host}}/api/assets/1
+Accept: application/json
+
+### 7. Add a BUY transaction for Bitcoin
+POST {{host}}/api/portfolio/transactions
+Content-Type: application/json
+
+{
+  "assetId": 1,
+  "portfolioId": 1,
+  "transactionType": 1,
+  "amount": 0.1,
+  "pricePerUnit": 60000.00,
+  "totalTransactionValue": 6000.00,
+  "transactionCurrency": "USD",
+  "transactionDate": "2024-03-01T00:00:00Z",
+  "notes": "Additional Bitcoin purchase"
+}
+
+### 8. Add a SELL transaction
+POST {{host}}/api/portfolio/transactions
+Content-Type: application/json
+
+{
+  "assetId": 2,
+  "portfolioId": 1,
+  "transactionType": 2,
+  "amount": 2,
+  "pricePerUnit": 195.00,
+  "totalTransactionValue": 390.00,
+  "transactionCurrency": "USD",
+  "transactionDate": "2024-03-15T00:00:00Z",
+  "notes": "Partial stock sale"
+}
+
+### 9. Add a DIVIDEND transaction
+POST {{host}}/api/portfolio/transactions
+Content-Type: application/json
+
+{
+  "assetId": 2,
+  "portfolioId": 1,
+  "transactionType": 6,
+  "amount": 0,
+  "totalTransactionValue": 25.00,
+  "transactionCurrency": "USD",
+  "transactionDate": "2024-03-20T00:00:00Z",
+  "notes": "Quarterly dividend payment"
+}
+
+### 10. Add a MAINTENANCE transaction for real estate
+POST {{host}}/api/portfolio/transactions
+Content-Type: application/json
+
+{
+  "assetId": 3,
+  "portfolioId": 1,
+  "transactionType": 7,
+  "amount": 0,
+  "totalTransactionValue": 1500.00,
+  "transactionCurrency": "USD",
+  "transactionDate": "2024-02-10T00:00:00Z",
+  "notes": "HVAC system repair"
+}
+
+### 11. Get all transactions
+GET {{host}}/api/portfolio/transactions
+Accept: application/json
+
+### 12. Get transactions for specific asset
+GET {{host}}/api/assets/1/transactions
+Accept: application/json
+
+### 13. Get asset average price
+GET {{host}}/api/assets/1/average-price
+Accept: application/json
+
+### 14. Update asset current value
+PUT {{host}}/api/assets/1/current-value
+Content-Type: application/json
+
+65000.00
+
+### 15. Get assets by type (cryptocurrencies)
+GET {{host}}/api/assets/type/1
+Accept: application/json
+
+### 16. Update an asset
+PUT {{host}}/api/assets/1
+Content-Type: application/json
+
+{
+  "portfolioId": 1,
+  "assetTypeId": 1,
+  "name": "Bitcoin",
+  "symbol": "BTC",
+  "description": "Digital currency - updated",
+  "quantity": 0.6,
+  "acquisitionDate": "2024-01-15T00:00:00Z",
+  "acquisitionCost": 31000.00,
+  "currentValue": 39000.00,
+  "currency": "USD",
+  "notes": "Updated after additional purchase"
+}
+
+### 17. Delete a transaction
+DELETE {{host}}/api/portfolio/transactions/1
+
+### 18. Delete an asset (soft delete)
+DELETE {{host}}/api/assets/1
+
+@host = http://localhost:5000

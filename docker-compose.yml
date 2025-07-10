@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: crypto_postgres
+    environment:
+      POSTGRES_DB: cryptoportfolio
+      POSTGRES_USER: crypto_user
+      POSTGRES_PASSWORD: crypto_password123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - crypto_network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crypto_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=cryptoportfolio;Username=crypto_user;Password=crypto_password123
+      - CoinMarketCap__ApiKey=YOUR_COINMARKETCAP_API_KEY_HERE
+    ports:
+      - "5000:80"
+    depends_on:
+      - postgres
+    networks:
+      - crypto_network
+
+  frontend:
+    build:
+      context: ./CryptoPortfolio.WEB/crypto-portfolio-frontend
+      dockerfile: Dockerfile
+    container_name: crypto_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://api:80/api
+    depends_on:
+      - api
+    networks:
+      - crypto_network
+
+volumes:
+  postgres_data:
+
+networks:
+  crypto_network:
+    driver: bridge

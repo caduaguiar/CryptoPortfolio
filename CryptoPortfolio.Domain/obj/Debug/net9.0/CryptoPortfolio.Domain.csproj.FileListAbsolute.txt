@@ -1,0 +1,11 @@
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/obj/Debug/net9.0/CryptoPortfolio.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/obj/Debug/net9.0/CryptoPortfolio.Domain.AssemblyInfoInputs.cache
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/obj/Debug/net9.0/CryptoPortfolio.Domain.AssemblyInfo.cs
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/obj/Debug/net9.0/CryptoPortfolio.Domain.csproj.CoreCompileInputs.cache
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/bin/Debug/net9.0/CryptoPortfolio.Domain.deps.json
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/bin/Debug/net9.0/CryptoPortfolio.Domain.dll
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/bin/Debug/net9.0/CryptoPortfolio.Domain.pdb
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/obj/Debug/net9.0/CryptoPortfolio.Domain.dll
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/obj/Debug/net9.0/refint/CryptoPortfolio.Domain.dll
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/obj/Debug/net9.0/CryptoPortfolio.Domain.pdb
+/Users/carlosaguiar/Projetos/Crypto/CryptoPortfolio.Domain/obj/Debug/net9.0/ref/CryptoPortfolio.Domain.dll

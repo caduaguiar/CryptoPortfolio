@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Test</title>
+</head>
+<body>
+    <h1>Testing CORS Connection</h1>
+    <button onclick="testAPI()">Test API Connection</button>
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/portfolio/dashboard');
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <h2>✅ SUCCESS!</h2>
+                    <p><strong>Total Portfolio Value:</strong> $${data.totalPortfolioValue}</p>
+                    <p><strong>Total Invested:</strong> $${data.totalInvested}</p>
+                    <p><strong>Profit/Loss:</strong> $${data.totalProfitLoss} (${data.totalProfitLossPercentage}%)</p>
+                    <p><strong>Assets:</strong> ${data.assets.length}</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <h2>❌ ERROR</h2>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

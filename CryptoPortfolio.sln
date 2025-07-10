@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPortfolio.API", "CryptoPortfolio.API\CryptoPortfolio.API.csproj", "{0E757E78-8B3F-4B72-9750-47715030CC22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPortfolio.Services", "CryptoPortfolio.Services\CryptoPortfolio.Services.csproj", "{09AF0501-469F-4C75-88F6-D90C12951379}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPortfolio.Domain", "CryptoPortfolio.Domain\CryptoPortfolio.Domain.csproj", "{DDE97ECF-F107-4B8E-9728-61E815505BE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPortfolio.Data", "CryptoPortfolio.Data\CryptoPortfolio.Data.csproj", "{74BDC2E1-AE74-4E08-81B3-8D116FA085CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E757E78-8B3F-4B72-9750-47715030CC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E757E78-8B3F-4B72-9750-47715030CC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E757E78-8B3F-4B72-9750-47715030CC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E757E78-8B3F-4B72-9750-47715030CC22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09AF0501-469F-4C75-88F6-D90C12951379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09AF0501-469F-4C75-88F6-D90C12951379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09AF0501-469F-4C75-88F6-D90C12951379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09AF0501-469F-4C75-88F6-D90C12951379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDE97ECF-F107-4B8E-9728-61E815505BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE97ECF-F107-4B8E-9728-61E815505BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE97ECF-F107-4B8E-9728-61E815505BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE97ECF-F107-4B8E-9728-61E815505BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74BDC2E1-AE74-4E08-81B3-8D116FA085CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74BDC2E1-AE74-4E08-81B3-8D116FA085CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74BDC2E1-AE74-4E08-81B3-8D116FA085CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74BDC2E1-AE74-4E08-81B3-8D116FA085CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
